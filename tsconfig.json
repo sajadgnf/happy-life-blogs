@@ -15,5 +15,9 @@
   },
   "exclude": [
     "dist"
+  ],
+  "include": [
+    "src",
+    "index.d.ts"
   ]
 }

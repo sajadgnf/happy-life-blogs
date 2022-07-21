@@ -6,9 +6,11 @@ import CardEL from '../shared/CardEL';
 import loader from "../../assets/gifs/loading.gif"
 import { Box } from '@mui/system';
 
-type Author = {
+export type Author = {
     avatar: { url: string },
-    name: string
+    name: string,
+    id: string,
+    slug: string
 }
 
 export type Post = {

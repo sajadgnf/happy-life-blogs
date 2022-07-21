@@ -1,5 +1,6 @@
 import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Divider, Typography } from '@mui/material';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Post } from '../blog/Blogs';
 
 const CardEL = ({ title, coverPhoto, slug, author }: Post) => {
@@ -34,16 +35,18 @@ const CardEL = ({ title, coverPhoto, slug, author }: Post) => {
                 </Typography>
             </CardContent>
 
-            <Divider sx={{ mx: 1 }} />
+            <Divider variant='middle' />
 
             <CardActions>
-                <Button
-                    variant="outlined"
-                    fullWidth
-                    sx={{ borderRadius: 30, mt: 1, fontWeight: "700" }}
-                >
-                    مطالعه مقاله
-                </Button>
+                {/* <Link to={`blogs/${slug}`}> */}
+                    <Button
+                        variant="outlined"
+                        fullWidth
+                        sx={{ borderRadius: 30, mt: 1, fontWeight: "700" }}
+                    >
+                        مطالعه مقاله
+                    </Button>
+                {/* </Link> */}
             </CardActions>
         </Card>
     );

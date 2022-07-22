@@ -6,14 +6,17 @@ import { Post } from '../blog/Blogs';
 const CardEL = ({ title, coverPhoto, slug, author }: Post) => {
     return (
         <Card sx={{ boxShadow: "rgba(0,0,0,.1) 0 4px 12px", borderRadius: 4 }}>
-            <CardHeader
-                avatar={
-                    <Avatar src={author.avatar.url} />
-                }
-                title={
-                    <Typography textAlign='end' color='text.primary'>{author.name}</Typography>
-                }
-            />
+            {
+                author &&
+                <CardHeader
+                    avatar={
+                        <Avatar src={author.avatar.url} />
+                    }
+                    title={
+                        <Typography textAlign='end' color='text.primary'>{author.name}</Typography>
+                    }
+                />
+            }
 
             <CardMedia
                 component="img"

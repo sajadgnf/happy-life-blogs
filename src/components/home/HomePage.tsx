@@ -1,6 +1,6 @@
 import { Container, Grid, Typography } from '@mui/material';
 import React from 'react';
-import Authors from '../author/Authors';
+import Authors from '../author/Author';
 import Blogs from '../blog/Blogs';
 
 const HomePage = () => {
@@ -13,6 +13,7 @@ const HomePage = () => {
                         variant='h5'
                         fontWeight="700"
                         mb={3}
+                        color='#444'
                     >
                         نویسنده ها
                     </Typography>
@@ -24,6 +25,7 @@ const HomePage = () => {
                         variant='h5'
                         fontWeight="700"
                         mb={3}
+                        color='#444'
                     >
                         مقاله ها
                     </Typography>

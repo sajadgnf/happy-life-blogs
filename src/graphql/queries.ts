@@ -68,7 +68,6 @@ const GET_BLOG_INFO = gql`
       coverPhoto {
         url
       }
-      slug
       title
       content {
         html

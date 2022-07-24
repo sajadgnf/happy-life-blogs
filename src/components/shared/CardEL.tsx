@@ -41,7 +41,7 @@ const CardEL = ({ title, coverPhoto, slug, author }: Post) => {
             <Divider variant='middle' />
 
             <CardActions>
-                <Link to={`blogs/${slug}`} style={{ width: '100%' }}>
+                <Link to={`/blogs/${slug}`} style={{ width: '100%' }}>
                     <Button
                         variant="outlined"
                         fullWidth

@@ -1,16 +1,17 @@
 import { useQuery } from '@apollo/client';
-import { Avatar, Card, Divider, Grid, List, ListItem, ListItemAvatar, ListItemText, Typography } from '@mui/material';
-import { borderRadius } from '@mui/system';
+import { Avatar, Divider, Grid, Typography } from '@mui/material';
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { GET_AUTHORS_INFO } from '../../graphql/queries';
 import { Author } from '../blog/Blogs';
+import Loader from '../shared/Loader';
 
 const Authors = () => {
 
     const { loading, data, error } = useQuery(GET_AUTHORS_INFO)
 
-    if (loading) return <h1>Loading...</h1>
+    if (loading) return <Loader />
+
     if (error) return <h1>Error...</h1>
 
     return (

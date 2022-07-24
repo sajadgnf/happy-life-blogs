@@ -3,8 +3,8 @@ import { Avatar, Card, CardHeader, CardMedia, Grid, Typography } from '@mui/mate
 import React from 'react';
 import { GET_BLOGS_INFO } from '../../graphql/queries';
 import CardEL from '../shared/CardEL';
-import loader from "../../assets/gifs/loading.gif"
 import { Box } from '@mui/system';
+import Loader from '../shared/Loader';
 
 export type Author = {
     avatar: { url: string },
@@ -26,7 +26,7 @@ const Blogs = () => {
 
     const { loading, data, error } = useQuery(GET_BLOGS_INFO)
 
-    if (loading) return <Box display='flex' justifyContent="center"><img src={loader} /></Box>
+    if (loading) return <Loader />
 
     if (error) return <h1>Error...</h1>
 

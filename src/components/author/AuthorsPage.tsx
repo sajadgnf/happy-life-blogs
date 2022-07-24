@@ -2,11 +2,12 @@ import { useQuery } from '@apollo/client';
 import { Avatar, Grid, Typography } from '@mui/material';
 import { Container } from '@mui/system';
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { GET_AUTHOR_INFO } from '../../graphql/queries';
 import { Post } from '../blog/Blogs';
 import sanitizeHtml from 'sanitize-html';
 import CardEL from '../shared/CardEL';
+import Loader from '../shared/Loader';
 
 const AuthorsPage = () => {
 
@@ -16,7 +17,7 @@ const AuthorsPage = () => {
 
     console.log(data);
 
-    if (loading) return <h1>loading...</h1>
+    if (loading) return <Loader />
     if (error) return <h1>error...</h1>
 
     const { avatar, description, field, name, posts } = data.author

@@ -21,44 +21,50 @@ const Comments = ({ slug }: Slug) => {
     if (error) return <h1>Error...</h1>
 
     return (
-        <Grid
-            container
-            boxShadow="rgba(0,0,0,0.1) 0 4px 12px"
-            borderRadius={4}
-            p={2}
-        >
-            <Grid item xs={12} mt={2}>
-                <Typography
-                    component="p"
-                    variant="h6"
-                    fontWeight="700"
-                    color="primary"
-                >
-                    کامنت ها
-                </Typography>
-            </Grid>
+        <>
             {
-                data.comments.map((comment: Comment) => (
+                data.comments.length < 1 ?
+                    null :
                     <Grid
-                        item
-                        xs={12}
-                        key={comment.id}
-                        mt={4}
-                        border="1px solid #757575"
+                        container
+                        boxShadow="rgba(0,0,0,0.1) 0 4px 12px"
                         borderRadius={4}
                         p={2}
                     >
-                        <Box display='flex' alignItems="center">
-                            <Avatar sx={{ ml: 2 }} />
-                            <Typography fontWeight="700">{comment.name}</Typography>
-                        </Box>
-                        <Box mt={2}>
-                            <Typography>{comment.text}</Typography>
-                        </Box>
+                        <Grid item xs={12} mt={2}>
+                            <Typography
+                                component="p"
+                                variant="h6"
+                                fontWeight="700"
+                                color="primary"
+                            >
+                                کامنت ها
+                            </Typography>
+                        </Grid>
+                        {
+                            data.comments.map((comment: Comment) => (
+                                <Grid
+                                    item
+                                    xs={12}
+                                    key={comment.id}
+                                    mt={4}
+                                    border="1px solid #757575"
+                                    borderRadius={4}
+                                    p={2}
+                                >
+                                    <Box display='flex' alignItems="center">
+                                        <Avatar sx={{ ml: 2 }}>{comment.name[0]}</Avatar>
+                                        <Typography fontWeight="700">{comment.name}</Typography>
+                                    </Box>
+                                    <Box mt={2}>
+                                        <Typography>{comment.text}</Typography>
+                                    </Box>
+                                </Grid>
+                            ))
+                        }
                     </Grid>
-                ))
             }
-        </Grid>
+        </>
     );
 };
 

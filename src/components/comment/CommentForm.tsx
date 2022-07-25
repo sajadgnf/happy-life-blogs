@@ -1,10 +1,22 @@
 import { useMutation } from '@apollo/client';
-import { Button, Grid, TextField, Typography } from '@mui/material';
+import { Button, Grid, styled, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { SEND_COMMENT } from '../../graphql/mutations';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Slug } from '../blog/BlogPage';
+
+const CustomTextField = styled(TextField)({
+    '& label': {
+        transformOrigin: "right !important",
+        left: "inherit !important",
+        right: "1.75rem !important",
+        overflow: "unset",
+    },
+    '& legend': {
+        textAlign: 'start'
+    }
+});
 
 const CommentForm = ({ slug }: Slug) => {
 
@@ -47,8 +59,8 @@ const CommentForm = ({ slug }: Slug) => {
                     ارسال کامنت
                 </Typography>
             </Grid>
-            <Grid item xs={12} mt={4}>
-                <TextField
+            <Grid item xs={12} mt={4} dir="rtl">
+                <CustomTextField
                     variant="outlined"
                     label="نام"
                     value={name}
@@ -57,7 +69,7 @@ const CommentForm = ({ slug }: Slug) => {
                 />
             </Grid>
             <Grid item xs={12} mt={2}>
-                <TextField
+                <CustomTextField
                     variant="outlined"
                     label="ایمیل"
                     value={email}
@@ -66,7 +78,7 @@ const CommentForm = ({ slug }: Slug) => {
                 />
             </Grid>
             <Grid item xs={12} mt={2}>
-                <TextField
+                <CustomTextField
                     variant="outlined"
                     label="متن کامنت"
                     value={commentText}

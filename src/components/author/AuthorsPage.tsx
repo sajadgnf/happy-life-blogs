@@ -15,8 +15,6 @@ const AuthorsPage = () => {
 
     const { loading, data, error } = useQuery(GET_AUTHOR_INFO, { variables: { slug } })
 
-    console.log(data);
-
     if (loading) return <Loader />
     if (error) return <h1>error...</h1>
 

@@ -1,9 +1,8 @@
 import { useQuery } from '@apollo/client';
-import { Avatar, Card, CardHeader, CardMedia, Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import React from 'react';
 import { GET_BLOGS_INFO } from '../../graphql/queries';
 import CardEL from '../shared/CardEL';
-import { Box } from '@mui/system';
 import Loader from '../shared/Loader';
 
 export type Author = {

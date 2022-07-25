@@ -55,7 +55,7 @@ const AuthorsPage = () => {
                 <Grid item xs={12} mt={5}>
                     <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(description.html) }}></div>
                 </Grid>
-                <Grid xs={12} mt={6}>
+                <Grid item xs={12} mt={6}>
                     <Typography
                         variant='h5'
                         component="h3"

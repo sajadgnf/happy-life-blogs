@@ -60,6 +60,7 @@ const GET_BLOG_INFO = gql`
     post(where: {slug: $slug}) {
       author {
         name
+        slug
         avatar {
           url
         }

@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import { Avatar, Container, Typography, Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { GET_BLOG_INFO } from '../../graphql/queries';
 import sanitizeHtml from 'sanitize-html'
 import Loader from '../shared/Loader';
@@ -43,7 +43,7 @@ const BlogPage = () => {
                     <ArrowBackIcon cursor='pointer' onClick={() => navigate(-1)} />
                 </Grid>
                 <Grid item xs={12} mt={6}>
-                    <img style={{ borderRadius: 40 }} src={coverPhoto.url} alt={slug} width='100%' />
+                    <img style={{ borderRadius: 40, maxHeight: '80vh', objectFit: 'cover' }} src={coverPhoto.url} alt={slug} width='100%' />
                 </Grid>
             </Grid>
             <Grid
@@ -53,7 +53,9 @@ const BlogPage = () => {
                 display='flex'
                 alignItems="center"
             >
-                <Avatar sx={{ width: 80, height: 80, ml: 2 }} src={author.avatar.url} />
+                <Link to={`/authors/${author.slug}`}>
+                    <Avatar sx={{ width: 80, height: 80, ml: 2 }} src={author.avatar.url} />
+                </Link>
                 <Box>
                     <Typography component="h3" variant='h6' fontWeight="700">{author.name}</Typography>
                     <Typography variant="body1" color="text.secondary">{author.field}</Typography>

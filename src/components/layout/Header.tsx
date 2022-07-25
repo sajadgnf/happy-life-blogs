@@ -13,7 +13,9 @@ const Header = () => {
                     <Link to={"/"}>
                         < Typography variant='h6' component='h1' fontWeight='700' color='#fff'>وبلاگ هپی لایف</Typography>
                     </Link>
+                    <a href="https://happy-life-beige.vercel.app/">
                     <img src={logo} alt="logo" />
+                    </a>
                     <MenuBookIcon sx={{ display: { xs: "none", sm: 'unset' } }} />
                 </Toolbar>
             </Container>

@@ -7,6 +7,10 @@ import { GET_BLOG_INFO } from '../../graphql/queries';
 import sanitizeHtml from 'sanitize-html'
 import Loader from '../shared/Loader';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CommentForm from '../comment/CommentForm';
+import Comments from '../comment/Comments';
+
+export type Slug = { slug: string }
 
 const BlogPage = () => {
 
@@ -63,6 +67,12 @@ const BlogPage = () => {
             </Grid>
             <Grid item xs={12} mt={5}>
                 <div dangerouslySetInnerHTML={{ __html: sanitizeHtml(content.html) }}></div>
+            </Grid>
+            <Grid item xs={12} mt={12}>
+                <CommentForm slug={slug} />
+            </Grid>
+            <Grid item xs={12} mt={12}>
+                <Comments slug={slug} />
             </Grid>
         </Container>
     );

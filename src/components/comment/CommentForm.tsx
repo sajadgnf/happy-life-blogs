@@ -1,10 +1,11 @@
 import { useMutation } from '@apollo/client';
 import { Button, Grid, styled, TextField, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SEND_COMMENT } from '../../graphql/mutations';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Slug } from '../blog/BlogPage';
+import { validate } from '../../helper/functions';
 
 const CustomTextField = styled(TextField)({
     '& label': {
@@ -20,27 +21,57 @@ const CustomTextField = styled(TextField)({
 
 const CommentForm = ({ slug }: Slug) => {
 
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [commentText, setCommentText] = useState('')
     const [pressed, setPressed] = useState(false)
+    const [comment, setComment] = useState({
+        name: '',
+        email: '',
+        text: '',
+    })
+    const [errors, setErrors] = useState({
+        name: '',
+        email: '',
+        text: ''
+    })
+    const [touched, setTouched] = useState({
+        name: false,
+        email: false,
+        text: false
+    })
 
-    const [sendComment, { loading, data, error }] = useMutation(SEND_COMMENT, { variables: { name, email, text: commentText, slug } })
+    const [sendComment, { loading, data, error }] = useMutation(SEND_COMMENT, {
+        variables: {
+            name: comment.name,
+            email: comment.email,
+            text: comment.text,
+            slug
+        }
+    })
 
+    const focusHandler = (e: React.FocusEvent) => {
+        const target = e.target as HTMLInputElement
+        setTouched({ ...touched, [target.name]: true })
+    }
+
+    const inputHandler = (e: React.ChangeEvent) => {
+        const target = e.target as HTMLInputElement
+        setComment({ ...comment, [target.name]: target.value })
+    }
+
+    useEffect(() => {
+        setErrors(validate(comment))
+    }, [comment, touched])
 
     const sendHandler = () => {
-        if (name && email && commentText) {
-            sendComment()
-            setPressed(true)
-        } else {
-            toast.warn('تمام فیلدها را پر کنید', { position: 'top-center' })
-        }
+        sendComment()
+        setPressed(true)
     }
 
     if (data && pressed) {
         toast.success('کامنت ارسال شد و منتظر تایید میباشد', { position: 'top-center' })
         setPressed(false)
     }
+
+    const { name, email, text } = comment    
 
     return (
         <Grid
@@ -64,35 +95,61 @@ const CommentForm = ({ slug }: Slug) => {
                     variant="outlined"
                     label="نام"
                     value={name}
-                    onChange={e => setName(e.target.value)}
+                    name="name"
+                    onChange={e => inputHandler(e)}
+                    onFocus={e => focusHandler(e)}
                     fullWidth
                 />
+                {
+                    errors.name && touched.name &&
+                    <Typography variant='body2' mt={.5} color="#b71c1c">
+                        {errors.name}
+                    </Typography>
+                }
             </Grid>
             <Grid item xs={12} mt={2}>
                 <CustomTextField
                     variant="outlined"
                     label="ایمیل"
                     value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    name="email"
+                    onChange={e => inputHandler(e)}
+                    onFocus={e => focusHandler(e)}
                     fullWidth
                 />
+                {
+                    errors.email && touched.email &&
+                    <Typography variant='body2' mt={.5} color="#b71c1c">
+                        {errors.email}
+                    </Typography>
+                }
             </Grid>
             <Grid item xs={12} mt={2}>
                 <CustomTextField
                     variant="outlined"
                     label="متن کامنت"
-                    value={commentText}
-                    onChange={e => setCommentText(e.target.value)}
+                    value={text}
+                    name="text"
+                    onChange={e => inputHandler(e)}
+                    onFocus={e => focusHandler(e)}
                     fullWidth
                     multiline
                     minRows={4}
                 />
+                {
+                    errors.text && touched.text &&
+                    <Typography variant='body2' mt={.5} color="#b71c1c">
+                        {errors.text}
+                    </Typography>
+                }
             </Grid>
             <Grid item xs={12} mt={2}>
                 {
-                    loading ?
-                        <Button variant="contained" disabled>در حال ارسال ...</Button> :
-                        <Button variant="contained" onClick={sendHandler}>ارسال</Button>
+                    errors.name || errors.email || errors.text ?
+                        <Button variant="contained" disabled> ارسال </Button> :
+                        loading ?
+                            <Button variant="contained" disabled>در حال ارسال ...</Button> :
+                            <Button variant="contained" onClick={sendHandler}>ارسال</Button>
 
                 }
             </Grid>

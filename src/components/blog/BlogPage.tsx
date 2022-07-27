@@ -25,6 +25,7 @@ const BlogPage = () => {
 
     const { coverPhoto, title, author, content } = data.post
 
+
     return (
         <Container maxWidth="lg">
             <Grid container>

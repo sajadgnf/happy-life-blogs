@@ -1,4 +1,4 @@
-import { AppBar, Button, Toolbar, Typography } from '@mui/material';
+import { AppBar, Toolbar, Typography } from '@mui/material';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import React from 'react';
 import { Container } from '@mui/system';

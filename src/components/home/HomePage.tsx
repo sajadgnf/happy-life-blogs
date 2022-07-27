@@ -4,6 +4,7 @@ import Authors from '../author/Author';
 import Blogs from '../blog/Blogs';
 
 const HomePage = () => {
+
     return (
         <Container maxWidth="lg">
             <Grid container spacing={2} padding={3}>

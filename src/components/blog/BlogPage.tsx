@@ -33,19 +33,16 @@ const BlogPage = () => {
                     item
                     xs={12}
                     mt={9}
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
                 >
                     <Typography
                         component="h2"
                         variant='h5'
                         color="primary"
                         fontWeight="700"
+                        mr={5}
                     >
                         {title}
                     </Typography>
-                    <ArrowBackIcon cursor='pointer' onClick={() => navigate(-1)} />
                 </Grid>
                 <Grid item xs={12} mt={6}>
                     <img style={{ borderRadius: 40, maxHeight: '80vh', objectFit: 'cover' }} src={coverPhoto.url} alt={slug} width='100%' />

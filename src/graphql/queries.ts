@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 const GET_BLOGS_INFO = gql`
-    query {  
-      posts {
+    query getBlogsInfo($last:Int! = 12){  
+      posts(first: $last) {
         author {
           name
           avatar {
